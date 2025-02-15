@@ -70,14 +70,14 @@ clear_button.grid(row=0, column=1, padx=(10, 0))
 
 def download()->None:
     """
-    function to download
+    Download function for mp4/mp3 videos from youtube using pytubefix. 
     """
     global outputDir
 
     target = valueD.get()
     if not target or "youtu" not in target:
         mg.showerror("Value Error", "You must specify a valid URL")
-        return
+        return None
 
     try:
         vid = pt.YouTube(target)
@@ -96,6 +96,9 @@ def download()->None:
 
     except Exception as r:
         mg.showerror("Error", f"Could not download the video: {str(r)}")
+
+    finally:
+        return None
 
 dlButton = tk.Button(root, text="Download", bg=custom.bg, fg=custom.fg, font=custom.font, command=download, bd=2, relief="solid")
 dlButton.pack(pady=20)
